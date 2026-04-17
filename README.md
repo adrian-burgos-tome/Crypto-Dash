@@ -27,7 +27,7 @@ Proyecto para la asignatura de **Lenguaje de Marcas** (1º DAW). Una aplicación
 ## ⚙️ Configuración e Instalación
 
 1.  **Clonar el repositorio:**
-    git clone https://github.com/tu-usuario/nombre-del-proyecto.git
+    git clone https://github.com/adrian-burgos-tome/Crypto-Dash.git
 
 2.  **Acceder al directorio:**
     cd nombre-del-proyecto
