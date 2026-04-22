@@ -263,7 +263,8 @@ function populateDetail(coin) {
  * @param {string} message 
  */
 function showDetailError(message) {
-    detailName.textContent = 'Error';
+    setConnectionStatus('offline');
+    detailName.textContent = 'Error de Conexión';
     detailSymbol.textContent = message;
     statPrice.textContent = '—';
     statChange24h.textContent = '—';
