@@ -1,0 +1,845 @@
+/* ============================================
+   CRYPTO-DASH — Cyberpunk Neon Theme
+   Color Palette: Greens & Blacks with Neon Glow
+   ============================================ */
+
+/* ---------- Google Fonts ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+/* ---------- CSS Variables ---------- */
+:root {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #0d1117;
+    --bg-card: #0b1a0f;
+    --bg-card-hover: #0f2a15;
+    --bg-glass: rgba(0, 255, 65, 0.03);
+    --bg-glass-hover: rgba(0, 255, 65, 0.07);
+
+    --neon-green: #00ff41;
+    --neon-green-dim: #00cc33;
+    --neon-green-bright: #39ff6e;
+    --neon-cyan: #00ffd5;
+    --neon-lime: #b5ff00;
+    --neon-red: #ff0040;
+    --neon-orange: #ff6600;
+    --neon-yellow: #ffe600;
+
+    --text-primary: #c9ffd5;
+    --text-secondary: #6b9e77;
+    --text-dim: #2e5e3a;
+
+    --border-glow: #00ff41;
+    --border-dim: #1a3d23;
+    --border-subtle: #0f2a15;
+
+    --glow-sm: 0 0 5px rgba(0, 255, 65, 0.3);
+    --glow-md: 0 0 10px rgba(0, 255, 65, 0.4), 0 0 20px rgba(0, 255, 65, 0.1);
+    --glow-lg: 0 0 10px rgba(0, 255, 65, 0.5), 0 0 30px rgba(0, 255, 65, 0.2), 0 0 60px rgba(0, 255, 65, 0.1);
+    --glow-xl: 0 0 15px rgba(0, 255, 65, 0.6), 0 0 40px rgba(0, 255, 65, 0.3), 0 0 80px rgba(0, 255, 65, 0.15);
+
+    --font-display: 'Orbitron', sans-serif;
+    --font-mono: 'Share Tech Mono', monospace;
+    --font-body: 'Rajdhani', sans-serif;
+
+    --transition-fast: 0.2s ease;
+    --transition-med: 0.35s ease;
+    --transition-slow: 0.6s ease;
+}
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ---------- Scanline Overlay ---------- */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 65, 0.015) 2px,
+        rgba(0, 255, 65, 0.015) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* ---------- Grid Background ---------- */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--neon-green-dim);
+    border-radius: 3px;
+    box-shadow: var(--glow-sm);
+}
+
+/* ---------- Selection ---------- */
+::selection {
+    background: rgba(0, 255, 65, 0.25);
+    color: var(--neon-green-bright);
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-dim);
+    box-shadow: 0 2px 30px rgba(0, 255, 65, 0.08);
+}
+
+#menu {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+    border: 2px solid var(--neon-green);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    box-shadow: var(--glow-md);
+    animation: pulse-border 3s ease-in-out infinite;
+}
+
+.logo-text h1 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--neon-green);
+    text-shadow: var(--glow-md);
+    text-transform: uppercase;
+}
+
+.logo-text .tagline {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.header-status {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--neon-green);
+    box-shadow: var(--glow-sm);
+    animation: blink 2s ease-in-out infinite;
+}
+
+.status-dot.offline {
+    background: var(--neon-red);
+    box-shadow: 0 0 5px rgba(255, 0, 64, 0.5);
+}
+
+#last-update {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* ---------- Section Title ---------- */
+.section-title {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-dim);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.section-title::before {
+    content: '//';
+    color: var(--neon-green);
+    text-shadow: var(--glow-sm);
+}
+
+/* ============================================
+   CRYPTO GRID
+   ============================================ */
+#crypto-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+}
+
+/* ---------- Crypto Card ---------- */
+.crypto-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-dim);
+    border-radius: 12px;
+    padding: 1.5rem;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform var(--transition-med),
+        border-color var(--transition-med),
+        box-shadow var(--transition-med),
+        background var(--transition-med);
+}
+
+.crypto-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+    opacity: 0;
+    transition: opacity var(--transition-med);
+}
+
+.crypto-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(0, 255, 65, 0.04), transparent 60%);
+    opacity: 0;
+    transition: opacity var(--transition-slow);
+    pointer-events: none;
+}
+
+.crypto-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--neon-green-dim);
+    box-shadow: var(--glow-md);
+    background: var(--bg-card-hover);
+}
+
+.crypto-card:hover::before {
+    opacity: 1;
+}
+
+.crypto-card:hover::after {
+    opacity: 1;
+}
+
+.crypto-card.active {
+    border-color: var(--neon-green);
+    box-shadow: var(--glow-lg);
+    background: var(--bg-card-hover);
+}
+
+.crypto-card.active::before {
+    opacity: 1;
+    animation: scan-line 2s linear infinite;
+}
+
+/* Card Header */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.crypto-icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(0, 255, 65, 0.06);
+    border: 1px solid var(--border-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-med);
+    overflow: hidden;
+}
+
+.crypto-card:hover .crypto-icon-wrapper {
+    border-color: var(--neon-green-dim);
+    box-shadow: var(--glow-sm);
+}
+
+.crypto-icon-wrapper img {
+    width: 32px;
+    height: 32px;
+    filter: drop-shadow(0 0 3px rgba(0, 255, 65, 0.3));
+}
+
+.card-info {
+    flex: 1;
+}
+
+.crypto-name {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+}
+
+.crypto-symbol {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Card Body */
+.card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.crypto-price {
+    font-family: var(--font-mono);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--neon-green);
+    text-shadow: var(--glow-sm);
+}
+
+.crypto-change {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.crypto-change.positive {
+    color: var(--neon-green);
+    background: rgba(0, 255, 65, 0.1);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+.crypto-change.negative {
+    color: var(--neon-red);
+    background: rgba(255, 0, 64, 0.1);
+    border: 1px solid rgba(255, 0, 64, 0.2);
+}
+
+/* Card Rank Badge */
+.rank-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+/* ============================================
+   DETAIL PANEL
+   ============================================ */
+#detail-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-dim);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    display: none;
+    position: relative;
+    overflow: hidden;
+    animation: panel-open 0.4s ease-out;
+}
+
+#detail-panel.visible {
+    display: block;
+}
+
+#detail-panel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--neon-green), var(--neon-cyan), var(--neon-green), transparent);
+    animation: scan-line 3s linear infinite;
+}
+
+/* Panel Close Button */
+.panel-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border-dim);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+}
+
+.panel-close:hover {
+    border-color: var(--neon-red);
+    color: var(--neon-red);
+    box-shadow: 0 0 10px rgba(255, 0, 64, 0.3);
+}
+
+/* Panel Header */
+.detail-header {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-dim);
+}
+
+.detail-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: rgba(0, 255, 65, 0.06);
+    border: 2px solid var(--neon-green-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--glow-md);
+}
+
+.detail-icon img {
+    width: 44px;
+    height: 44px;
+}
+
+.detail-title-group h2 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--neon-green);
+    text-shadow: var(--glow-md);
+}
+
+.detail-title-group .detail-symbol {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* Detail Stats Grid */
+.detail-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+}
+
+.stat-card {
+    background: rgba(0, 255, 65, 0.02);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 1.25rem;
+    transition: all var(--transition-med);
+}
+
+.stat-card:hover {
+    border-color: var(--border-dim);
+    background: rgba(0, 255, 65, 0.04);
+}
+
+.stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.stat-value {
+    font-family: var(--font-mono);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.stat-value.highlight {
+    color: var(--neon-green);
+    text-shadow: var(--glow-sm);
+}
+
+/* ============================================
+   LOADING & ERROR STATES
+   ============================================ */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    gap: 1.5rem;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 3px solid var(--border-dim);
+    border-top-color: var(--neon-green);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    box-shadow: var(--glow-sm);
+}
+
+.loading-text {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    animation: blink-text 1.5s ease-in-out infinite;
+}
+
+.error-container {
+    text-align: center;
+    padding: 3rem 2rem;
+    border: 1px dashed var(--neon-red);
+    border-radius: 12px;
+    background: rgba(255, 0, 64, 0.03);
+}
+
+.error-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.error-message {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--neon-red);
+    margin-bottom: 1rem;
+}
+
+.retry-btn {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.65rem 1.8rem;
+    border: 1px solid var(--neon-green-dim);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--neon-green);
+    cursor: pointer;
+    transition: all var(--transition-med);
+}
+
+.retry-btn:hover {
+    background: rgba(0, 255, 65, 0.1);
+    box-shadow: var(--glow-md);
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+    border-top: 1px solid var(--border-dim);
+    padding: 1.5rem 2rem;
+    margin-top: auto;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-left {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+.footer-left a {
+    color: var(--neon-green-dim);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.footer-left a:hover {
+    color: var(--neon-green);
+    text-shadow: var(--glow-sm);
+}
+
+.footer-right {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes blink-text {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+@keyframes pulse-border {
+    0%, 100% {
+        box-shadow: var(--glow-sm);
+    }
+    50% {
+        box-shadow: var(--glow-lg);
+    }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes scan-line {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+@keyframes panel-open {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes card-enter {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes glitch {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+@keyframes neon-flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        text-shadow: var(--glow-md);
+        opacity: 1;
+    }
+    20%, 24%, 55% {
+        text-shadow: none;
+        opacity: 0.8;
+    }
+}
+
+/* Card enter animation */
+.crypto-card {
+    animation: card-enter 0.5s ease-out both;
+}
+
+.crypto-card:nth-child(1)  { animation-delay: 0.05s; }
+.crypto-card:nth-child(2)  { animation-delay: 0.1s; }
+.crypto-card:nth-child(3)  { animation-delay: 0.15s; }
+.crypto-card:nth-child(4)  { animation-delay: 0.2s; }
+.crypto-card:nth-child(5)  { animation-delay: 0.25s; }
+.crypto-card:nth-child(6)  { animation-delay: 0.3s; }
+.crypto-card:nth-child(7)  { animation-delay: 0.35s; }
+.crypto-card:nth-child(8)  { animation-delay: 0.4s; }
+.crypto-card:nth-child(9)  { animation-delay: 0.45s; }
+.crypto-card:nth-child(10) { animation-delay: 0.5s; }
+.crypto-card:nth-child(11) { animation-delay: 0.55s; }
+.crypto-card:nth-child(12) { animation-delay: 0.6s; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    #menu {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .logo-text h1 {
+        font-size: 1.2rem;
+    }
+
+    .header-status {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    #crypto-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 0.75rem;
+    }
+
+    .crypto-card {
+        padding: 1rem;
+    }
+
+    .crypto-price {
+        font-size: 1rem;
+    }
+
+    #detail-panel {
+        padding: 1.5rem;
+    }
+
+    .detail-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .detail-stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    #crypto-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .logo-text h1 {
+        font-size: 1rem;
+        letter-spacing: 2px;
+    }
+}
