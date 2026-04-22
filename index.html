@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CryptoDash - Monitor de criptomonedas en tiempo real con datos de CoinGecko. Consulta precios, variaciones y estadísticas del mercado cripto.">
+    <meta name="author" content="Adrián Burgos Tomé">
+    <title>CryptoDash — Monitor Cripto en Tiempo Real</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⟐</text></svg>">
+</head>
+<body>
+
+    <!-- ====== HEADER ====== -->
+    <header>
+        <div id="menu">
+            <div class="logo-container">
+                <div class="logo-icon">⟐</div>
+                <div class="logo-text">
+                    <h1>CryptoDash</h1>
+                    <span class="tagline">Real-Time Market Monitor</span>
+                </div>
+            </div>
+            <div class="header-status">
+                <div class="status-indicator">
+                    <span class="status-dot" id="status-dot"></span>
+                    <span id="status-text">CONECTANDO...</span>
+                </div>
+                <span id="last-update">--:--:--</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ====== MAIN ====== -->
+    <main>
+        <!-- Sección: Grid de Criptomonedas -->
+        <section id="crypto-section" aria-label="Listado de criptomonedas">
+            <p class="section-title">Selecciona una criptomoneda</p>
+            <div id="crypto-grid">
+                <!-- Las tarjetas se generan dinámicamente por JS -->
+                <div class="loading-container" id="grid-loader">
+                    <div class="loader"></div>
+                    <span class="loading-text">Cargando datos del mercado...</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección: Panel de Detalle -->
+        <section id="detail-section" aria-label="Detalle de criptomoneda">
+            <div id="detail-panel">
+                <button class="panel-close" id="panel-close" aria-label="Cerrar panel">✕</button>
+                <div class="detail-header">
+                    <div class="detail-icon" id="detail-icon">
+                        <img src="" alt="" id="detail-img">
+                    </div>
+                    <div class="detail-title-group">
+                        <h2 id="detail-name">—</h2>
+                        <span class="detail-symbol" id="detail-symbol">—</span>
+                    </div>
+                </div>
+                <div class="detail-stats" id="detail-stats">
+                    <div class="stat-card">
+                        <p class="stat-label">Precio Actual (USD)</p>
+                        <p class="stat-value highlight" id="stat-price">—</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Cambio 24h</p>
+                        <p class="stat-value" id="stat-change-24h">—</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Máximo 24h</p>
+                        <p class="stat-value" id="stat-high-24h">—</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Mínimo 24h</p>
+                        <p class="stat-value" id="stat-low-24h">—</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Capitalización de Mercado</p>
+                        <p class="stat-value" id="stat-market-cap">—</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Volumen 24h</p>
+                        <p class="stat-value" id="stat-volume">—</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">Supply Circulante</p>
+                        <p class="stat-value" id="stat-supply">—</p>
+                    </div>
+                    <div class="stat-card">
+                        <p class="stat-label">ATH (Máximo Histórico)</p>
+                        <p class="stat-value" id="stat-ath">—</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ====== FOOTER ====== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                CryptoDash &copy; 2026 — Datos de <a href="https://www.coingecko.com/" target="_blank" rel="noopener">CoinGecko API</a>
+            </div>
+            <div class="footer-right">
+                Adrián Burgos Tomé · 1º DAW
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
