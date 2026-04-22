@@ -12,6 +12,12 @@ const API_BASE_URL = 'https://api.coingecko.com/api/v3';
 const CACHE_TTL = 120 * 1000; // 2 minutos
 const apiCache = new Map();
 
+/**
+ * Función de utilidad para crear una pausa asíncrona.
+ * @param {number} ms — Milisegundos de espera.
+ */
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 
 /**
  * Lista de IDs de las criptomonedas más populares que queremos mostrar.
@@ -55,6 +61,9 @@ async function fetchCryptoList() {
     const url = `${API_BASE_URL}/coins/markets?vs_currency=usd&ids=${ids}&order=market_cap_desc&per_page=20&page=1&sparkline=false&price_change_percentage=24h`;
 
     try {
+        // Pausa artificial para evitar saturación y dar efecto de escaneo
+        await sleep(600);
+        
         const response = await fetch(url);
 
         if (!response.ok) {
@@ -99,6 +108,9 @@ async function fetchCryptoDetail(coinId) {
     const url = `${API_BASE_URL}/coins/${coinId}?localization=false&tickers=false&community_data=false&developer_data=false`;
 
     try {
+        // Pausa artificial para evitar saturación y dar efecto de escaneo
+        await sleep(500);
+
         const response = await fetch(url);
 
         if (!response.ok) {
